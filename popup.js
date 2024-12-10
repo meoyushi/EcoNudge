@@ -1,11 +1,18 @@
 // Array of eco-tips
 const tips = [
-    "Turn off lights when not in use to save energy.",
-    "Carry a reusable water bottle instead of buying plastic ones.",
-    "Use cloth bags instead of single-use plastic bags.",
-    "Compost your food waste to reduce landfill impact.",
-    "Take shorter showers to conserve water.",
-    "Unplug electronics when not in use to save electricity."
+    "Leaving the room? Turn off the lights—your wallet (and the planet) will thank you.",
+
+    "Skip the single-use drama. Reusable water bottles are your vibe now.",
+
+    "Cloth bags > plastic bags. Save the planet and look good doing it.",
+
+    "Leftovers don't belong in the trash—compost and make your garden the real MVP.",
+
+    "Keep those shower jams short and sweet—nobody needs the deluxe album version.",
+
+    "Your electronics don't need a constant lifeline. Unplug them when they're off and chill."
+
+
 ];
 
 // Function to display today's tip

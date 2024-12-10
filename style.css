@@ -1,23 +1,63 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f8f5;
+    font-family: "Poppins", Arial, sans-serif;
+    /* Clean, modern font */
+    background-color: #579e57;
+    /* Light eco-friendly green */
+    color: #2e7d32;
+    /* Dark green for text */
     margin: 0;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Full viewport height */
 }
 
 #container {
-    max-width: 300px;
-    margin: auto;
+    background-color: #ffffff;
+    /* White card background */
+    border-radius: 12px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    padding: 20px 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    /* Responsive to small screens */
 }
 
 h1 {
-    font-size: 1.5rem;
-    color: #2e7d32;
+    font-size: 1.8rem;
+    color: #1b5e20;
+    /* Darker green for headings */
+    margin-bottom: 15px;
 }
 
 #tip {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    /* Better readability */
+    color: #424242;
+    /* Neutral gray for contrast */
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
     font-size: 1rem;
-    margin-top: 10px;
-    color: #333;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #2e7d32;
+    /* Match theme green */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1b5e20;
+    /* Darker green on hover */
 }
