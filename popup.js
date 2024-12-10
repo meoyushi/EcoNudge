@@ -2,10 +2,10 @@
 const tips = [
     "Leaving the room? Turn off the lights—your wallet (and the planet) will thank you.",
     "Skip the single-use drama. Reusable water bottles are your vibe now.",
+    "Your electronics don't need a constant lifeline. Unplug them when they're off and chill.",
     "Cloth bags > plastic bags. Save the planet and look good doing it.",
     "Leftovers don't belong in the trash—compost and make your garden the real MVP.",
     "Keep those shower jams short and sweet—nobody needs the deluxe album version.",
-    "Your electronics don't need a constant lifeline. Unplug them when they're off and chill.",
     "Take a walk or bike instead of driving for a cleaner planet."
 ];
 
@@ -30,8 +30,12 @@ progressText.id = 'progress-text';
 container.appendChild(progressText);
 
 // Weekly progress tracker
+const progressBarContainer = document.createElement('div');
+progressBarContainer.id = 'progress-bar-container';
+container.appendChild(progressBarContainer);
+
 progressElement.id = 'progress-bar';
-container.appendChild(progressElement);
+progressBarContainer.appendChild(progressElement);
 
 // Get the last completion date and reset progress if necessary
 function checkWeekReset() {

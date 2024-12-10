@@ -36,7 +36,7 @@ h1 {
 button {
     margin-top: 10px;
     margin-bottom: 15px;
-    /* Added margin to improve spacing between buttons */
+    /* Improved spacing between buttons */
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
@@ -52,33 +52,27 @@ button:hover {
     background-color: #1b5e20;
 }
 
-#progress-bar {
-    margin-top: 20px;
+#progress-bar-container {
     width: 100%;
     height: 20px;
     background-color: #e0e0e0;
     border: 2px solid #424242;
-    /* Added border here */
+    /* Border over entire progress bar */
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-#progress-bar::after {
-    content: attr(data-progress);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    line-height: 20px;
-    color: #ffffff;
-    font-weight: bold;
-}
-
 #progress-bar {
+    height: 100%;
+    width: 0%;
+    /* Start with 0% width and change dynamically */
     background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+    border-radius: 10px;
+    /* Match the container's rounded corners */
+    transition: width 0.5s ease-in-out;
+    /* Smooth transition for progress */
 }
 
 #progress-bar[data-progress="100%"] {
@@ -91,4 +85,6 @@ button:hover {
     color: #424242;
     margin-top: 10px;
     font-weight: bold;
+    text-align: center;
+    /* Center the text below the progress bar */
 }
