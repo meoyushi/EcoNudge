@@ -1,90 +1,188 @@
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    background-color: #417c41;
-    color: #2e7d32;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-#container {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 30px;
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-}
-
-h1 {
-    font-size: 1.8rem;
-    color: #1b5e20;
-    margin-bottom: 15px;
-}
-
-#tip {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #424242;
-    margin-bottom: 15px;
-}
-
-button {
-    margin-top: 10px;
-    margin-bottom: 15px;
-    /* Improved spacing between buttons */
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #2e7d32;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #1b5e20;
-}
-
-#progress-bar-container {
-    width: 100%;
-    height: 20px;
-    background-color: #e0e0e0;
-    border: 2px solid #424242;
-    /* Border over entire progress bar */
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-#progress-bar {
-    height: 100%;
-    width: 0%;
-    /* Start with 0% width and change dynamically */
-    background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
-    border-radius: 10px;
-    /* Match the container's rounded corners */
-    transition: width 0.5s ease-in-out;
-    /* Smooth transition for progress */
-}
-
-#progress-bar[data-progress="100%"] {
-    background: linear-gradient(90deg, #4caf50 0%, #81c784 100%);
-}
-
-#progress-text {
-    font-size: 1.2rem;
-    text-decoration: underline;
-    color: #424242;
-    margin-top: 10px;
-    font-weight: bold;
-    text-align: center;
-    /* Center the text below the progress bar */
-}
+    /* Default Light Mode Styles */
+    
+    body {
+        font-family: "Poppins", Arial, sans-serif;
+        background-color: #417c41;
+        color: #2e7d32;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    #container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px 30px;
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        color: #1b5e20;
+        margin-bottom: 15px;
+    }
+    
+    #tip {
+        font-size: 1.4rem;
+        /* Slightly larger font for emphasis */
+        line-height: 1.8;
+        color: #2e7d32;
+        /* Green text for eco theme */
+        margin-bottom: 15px;
+        background-color: #e8f5e9;
+        /* Light green background */
+        padding: 10px 15px;
+        border: 2px solid #4caf50;
+        /* Green border */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        /* Subtle glow effect */
+        transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+    #tip:hover {
+        background-color: #c8e6c9;
+        /* Slightly brighter green for light mode */
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+        /* Enhanced glow on hover */
+    }
+    
+    button {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #2e7d32;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #1b5e20;
+    }
+    
+    #progress-bar-container {
+        width: 100%;
+        height: 20px;
+        background-color: #e0e0e0;
+        border: 2px solid #424242;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    #progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+        border-radius: 10px;
+        transition: width 0.5s ease-in-out;
+    }
+    
+    #progress-text {
+        font-size: 1.2rem;
+        text-decoration: underline;
+        color: #424242;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+    /* Dark Mode Styles */
+    /* Position Dark Mode Toggle */
+    
+    label[for="dark-mode-toggle"] {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #b3ffab;
+        /* Neon green for eco theme */
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    label[for="dark-mode-toggle"] input {
+        margin-right: 8px;
+    }
+    /* Hover effect for the label */
+    
+    label[for="dark-mode-toggle"]:hover {
+        color: #8cff66;
+        /* Brighter neon green for hover effect */
+    }
+    /* Dark Mode Font Colors */
+    
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #b3ffab;
+        /* Neon green font for eco theme */
+    }
+    
+    #container.dark-mode {
+        background-color: #2b2b2b;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    }
+    
+    h1.dark-mode {
+        color: #afff9f;
+        /* Softer neon green for heading */
+    }
+    
+    #tip.dark-mode {
+        color: #b3ffab;
+        /* Neon green text for dark mode */
+        background-color: #2b2b2b;
+        /* Darker background for contrast */
+        border: 2px solid #66ff99;
+        /* Neon green border */
+        box-shadow: 0 0 15px rgba(102, 255, 153, 0.6);
+        /* Bright neon glow */
+    }
+    
+    #tip.dark-mode:hover {
+        background-color: #333333;
+        /* Slightly lighter background for dark mode */
+        box-shadow: 0 0 20px rgba(102, 255, 153, 0.8);
+        /* Brighter neon glow */
+    }
+    
+    button.dark-mode {
+        background-color: #33cc66;
+        /* Neon green for buttons */
+        color: #1a1a1a;
+        /* Dark background for contrast */
+    }
+    
+    button.dark-mode:hover {
+        background-color: #29a655;
+        /* Slightly darker neon for hover */
+    }
+    
+    #progress-text.dark-mode {
+        color: #b3ffab;
+        /* Neon green text for progress */
+    }
+    
+    #progress-bar.dark-mode {
+        background: linear-gradient(90deg, #66ff99 0%, #33cc66 100%);
+        /* Neon green gradient */
+    }
+    
+    #badge.dark-mode {
+        color: #afff9f;
+        /* Badge text in softer neon green */
+    }
