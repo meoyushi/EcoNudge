@@ -1,56 +1,47 @@
 body {
     font-family: "Poppins", Arial, sans-serif;
-    /* Clean, modern font */
-    background-color: #579e57;
-    /* Light eco-friendly green */
+    background-color: #417c41;
     color: #2e7d32;
-    /* Dark green for text */
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* Full viewport height */
 }
 
 #container {
     background-color: #ffffff;
-    /* White card background */
     border-radius: 12px;
-    /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
     padding: 20px 30px;
     text-align: center;
     max-width: 400px;
     width: 100%;
-    /* Responsive to small screens */
 }
 
 h1 {
     font-size: 1.8rem;
     color: #1b5e20;
-    /* Darker green for headings */
     margin-bottom: 15px;
 }
 
 #tip {
     font-size: 1.2rem;
     line-height: 1.6;
-    /* Better readability */
     color: #424242;
-    /* Neutral gray for contrast */
+    margin-bottom: 15px;
 }
 
 button {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    /* Added margin to improve spacing between buttons */
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
     color: #ffffff;
     background-color: #2e7d32;
-    /* Match theme green */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -59,5 +50,45 @@ button {
 
 button:hover {
     background-color: #1b5e20;
-    /* Darker green on hover */
+}
+
+#progress-bar {
+    margin-top: 20px;
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border: 2px solid #424242;
+    /* Added border here */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#progress-bar::after {
+    content: attr(data-progress);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    line-height: 20px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#progress-bar {
+    background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+}
+
+#progress-bar[data-progress="100%"] {
+    background: linear-gradient(90deg, #4caf50 0%, #81c784 100%);
+}
+
+#progress-text {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: #424242;
+    margin-top: 10px;
+    font-weight: bold;
 }
