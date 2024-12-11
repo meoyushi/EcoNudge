@@ -1,84 +1,77 @@
 // Array of eco-tips
 const tips = [
-    "Leaving the room? Turn off the lights—your wallet (and the planet) will thank you.",
-    "Skip the single-use drama. Reusable water bottles are your vibe now.",
-    "Your electronics don't need a constant lifeline. Unplug them when they're off and chill.",
-    "Cloth bags > plastic bags. Save the planet and look good doing it.",
     "Leftovers don't belong in the trash—compost and make your garden the real MVP.",
+    "Skip the single-use drama. Reusable water bottles are your vibe now.",
     "Keep those shower jams short and sweet—nobody needs the deluxe album version.",
-    "Take a walk or bike instead of driving for a cleaner planet."
+    "Cloth bags > plastic bags. Save the planet and look good doing it.",
+    "Take a walk or bike instead of driving for a cleaner planet.",
+    "Leaving the room? Turn off the lights—your wallet (and the planet) will thank you.",
+    "Your electronics don't need a constant lifeline. Unplug them when they're off and chill."
+
 ];
 
 // DOM elements
 const tipElement = document.getElementById('tip');
-const saveButton = document.createElement('button');
-const completeButton = document.createElement('button');
-const progressElement = document.createElement('div');
-const progressText = document.createElement('div');
-const badgeElement = document.createElement('div');
+const saveButton = document.getElementById('save-tip');
+const completeButton = document.getElementById('complete-tip');
+const progressElement = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const badgeElement = document.getElementById('badge');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-// Append buttons dynamically to the container
-const container = document.getElementById('container');
-saveButton.id = 'save-tip';
-saveButton.innerText = 'Save to Favorites';
-completeButton.id = 'complete-tip';
-completeButton.innerText = 'Mark as Completed';
-container.appendChild(saveButton);
-container.appendChild(completeButton);
-
-// Add a progress text below the progress bar
-progressText.id = 'progress-text';
-container.appendChild(progressText);
-
 // Weekly progress tracker
-progressElement.id = 'progress-bar';
-container.appendChild(progressElement);
+let completedTips = JSON.parse(localStorage.getItem('completedTips')) || [];
+let completedWeeks = JSON.parse(localStorage.getItem('completedWeeks')) || 0;
 
-// Badge display element
-badgeElement.id = 'badge';
-container.appendChild(badgeElement);
-
-// Get the last completion date and reset progress if necessary
+// Reset progress if a new week starts
 function checkWeekReset() {
     const lastCompletionDate = localStorage.getItem('lastCompletionDate');
     const currentDate = new Date();
-    const currentWeek = currentDate.getWeek();
+    const currentWeek = currentDate.getWeek(); // Get the current week number
 
     if (lastCompletionDate) {
         const lastCompletionWeek = new Date(lastCompletionDate).getWeek();
-        // If the week has changed, reset the progress
+        // Check if the week has changed
         if (currentWeek !== lastCompletionWeek) {
-            localStorage.removeItem('completedTips');
+            // If all tips were completed last week, optionally increment completedWeeks
+            if (completedTips.length === 7) {
+                completedWeeks++;
+                localStorage.setItem('completedWeeks', completedWeeks);
+            }
+
+            // Reset all tips as not completed for the new week
+            completedTips = [];
+            localStorage.setItem('completedTips', JSON.stringify(completedTips));
+
+            // Update the last completion date to the current date
             localStorage.setItem('lastCompletionDate', currentDate.toISOString());
         }
     } else {
+        // If no last completion date exists, set it to the current date
         localStorage.setItem('lastCompletionDate', currentDate.toISOString());
     }
 }
 
-// Function to display today's tip
+
+
+// Get the current tip of the day
 function getTipOfTheDay() {
     const date = new Date();
-    const index = date.getDate() % tips.length; // Rotate tips daily
+    const index = date.getDate() % tips.length;
     tipElement.innerText = tips[index];
     updateProgress();
 }
 
-// Load weekly data from local storage
-let completedTips = JSON.parse(localStorage.getItem('completedTips')) || [];
-let completedWeeks = JSON.parse(localStorage.getItem('completedWeeks')) || 0;
-
 // Save the current tip to favorites
-saveButton.addEventListener("click", () => {
+saveButton.addEventListener('click', () => {
     const currentTip = tipElement.innerText;
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     if (!favorites.includes(currentTip)) {
         favorites.push(currentTip);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("Tip added to favorites!");
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('Tip added to favorites!');
     } else {
-        alert("Tip is already in favorites!");
+        alert('Tip is already in favorites!');
     }
 });
 
@@ -96,67 +89,65 @@ completeButton.addEventListener("click", () => {
     }
 });
 
-// Update progress tracker as a fraction
+
+// Update the progress bar and text
 function updateProgress() {
-    const progressFraction = `${completedTips.length}/7`; // Show progress as fraction (e.g., 3/7)
-    progressText.innerText = `Progress This Week: ${progressFraction}`; // Display progress text
-
-    // Adjust width of the progress bar based on fraction (out of 7)
+    const progressFraction = `${completedTips.length}/7`;
+    progressText.innerText = `Progress This Week: ${progressFraction}`;
     const progressWidth = (completedTips.length / 7) * 100;
-    progressElement.style.transition = "width 0.5s ease-in-out"; // Smooth transition
-    progressElement.style.width = `${progressWidth}%`; // Update progress bar width
+    progressElement.style.width = `${progressWidth}%`;
 
-    // Check if user completed all tips for the week
     if (completedTips.length === 7) {
         markWeekAsCompleted();
     }
 }
 
-// Mark the current week as completed
+// Mark the current week as completed and display a badge
 function markWeekAsCompleted() {
-    completedWeeks++;
-    localStorage.setItem('completedWeeks', completedWeeks);
-    displayBadge();
+    if (completedTips.length === 7) { // Ensure all tips are completed
+        completedWeeks++;
+        localStorage.setItem('completedWeeks', completedWeeks);
+        displayBadge(); // Show badge after updating the counter
+    }
 }
 
-// Display a badge of achievement when the user has completed certain weeks
+
+
+
 function displayBadge() {
-    if (completedWeeks >= 3) {
+    if (completedWeeks >= 0) {
         badgeElement.innerText = `🏅 You've completed ${completedWeeks} weeks of eco-tips! 🎉`;
         badgeElement.style.fontSize = "1.5rem";
         badgeElement.style.fontWeight = "bold";
         badgeElement.style.color = "#4caf50";
         badgeElement.style.marginTop = "20px";
-    } else {
-        badgeElement.innerText = "";
+
+
     }
 }
 
-// Function to get the current week number
+
+
+// Get the current week number
 Date.prototype.getWeek = function() {
-    const startDate = new Date(this.getFullYear(), 0, 1);
+    const startDate = new Date(this.getFullYear(), 0, 1); // Jan 1st of the year
     const days = Math.floor((this - startDate) / (24 * 60 * 60 * 1000));
-    return Math.ceil((days + 1) / 7);
+    return Math.ceil((days + startDate.getDay() + 1) / 7); // Adjust to ensure proper week start
 };
 
-// Toggle dark mode based on user selection
-darkModeToggle.addEventListener("change", () => {
+
+
+
+
+// Toggle dark mode
+darkModeToggle.addEventListener('change', () => {
     const isDarkMode = darkModeToggle.checked;
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        container.classList.add('dark-mode');
-        progressElement.classList.add('dark-mode');
-        progressText.classList.add('dark-mode');
-        badgeElement.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-        container.classList.remove('dark-mode');
-        progressElement.classList.remove('dark-mode');
-        progressText.classList.remove('dark-mode');
-        badgeElement.classList.remove('dark-mode');
-    }
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    progressElement.classList.toggle('dark-mode', isDarkMode);
+    progressText.classList.toggle('dark-mode', isDarkMode);
+    badgeElement.classList.toggle('dark-mode', isDarkMode);
 });
 
-// Run the function when the popup is opened
+// Initialize the popup
 checkWeekReset();
 getTipOfTheDay();

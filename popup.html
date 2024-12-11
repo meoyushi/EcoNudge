@@ -8,11 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="width: 530px; height:440px">
+<body style="width: 530px; height: 440px">
     <div id="container">
         <h1>Eco-Tip of the Day</h1>
         <div id="tip">Loading...</div>
-        <!-- Buttons and progress bar will be dynamically added via JavaScript -->
+
+        <!-- Buttons -->
+        <button id="save-tip">Save to Favorites</button>
+        <button id="complete-tip">Mark as Completed</button>
+
+        <!-- Progress Bar -->
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-text">Progress This Week: 0/7</div>
+
+        <!-- Badge -->
+        <div id="badge-container">
+            <div id="badge"></div>
+            <button id="share-badge" style="display: none;">Share Badge</button>
+        </div>
+
 
         <!-- Dark Mode Toggle -->
         <label for="dark-mode-toggle">
