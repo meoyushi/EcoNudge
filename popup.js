@@ -27,30 +27,23 @@ let completedWeeks = JSON.parse(localStorage.getItem('completedWeeks')) || 0;
 function checkWeekReset() {
     const lastCompletionDate = localStorage.getItem('lastCompletionDate');
     const currentDate = new Date();
-    const currentWeek = currentDate.getWeek(); // Get the current week number
+    const currentWeek = currentDate.getWeek();
 
     if (lastCompletionDate) {
         const lastCompletionWeek = new Date(lastCompletionDate).getWeek();
+
         // Check if the week has changed
         if (currentWeek !== lastCompletionWeek) {
-            // If all tips were completed last week, optionally increment completedWeeks
-            if (completedTips.length === 7) {
-                completedWeeks++;
-                localStorage.setItem('completedWeeks', completedWeeks);
-            }
-
-            // Reset all tips as not completed for the new week
             completedTips = [];
             localStorage.setItem('completedTips', JSON.stringify(completedTips));
-
-            // Update the last completion date to the current date
             localStorage.setItem('lastCompletionDate', currentDate.toISOString());
         }
     } else {
-        // If no last completion date exists, set it to the current date
+        // Initialize the first date if not already set
         localStorage.setItem('lastCompletionDate', currentDate.toISOString());
     }
 }
+
 
 
 
@@ -104,10 +97,24 @@ function updateProgress() {
 
 // Mark the current week as completed and display a badge
 function markWeekAsCompleted() {
-    if (completedTips.length === 7) { // Ensure all tips are completed
-        completedWeeks++;
-        localStorage.setItem('completedWeeks', completedWeeks);
-        displayBadge(); // Show badge after updating the counter
+    if (completedTips.length === 7) {
+        // Ensure it's the first time marking this week as completed
+        const lastCompletedDate = localStorage.getItem('lastCompletionDate');
+        const today = new Date().toISOString().split('T')[0]; // Only date part
+
+        if (lastCompletedDate !== today) {
+            completedWeeks++;
+            localStorage.setItem('completedWeeks', completedWeeks);
+
+            // Mark the completion date
+            localStorage.setItem('lastCompletionDate', today);
+
+            // Display badge and reset progress
+            displayBadge();
+            completedTips = [];
+            localStorage.setItem('completedTips', JSON.stringify(completedTips));
+            updateProgress();
+        }
     }
 }
 
