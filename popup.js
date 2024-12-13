@@ -127,7 +127,6 @@ function displayBadge() {
 }
 
 
-
 // Get the current week number
 Date.prototype.getWeek = function() {
     const startDate = new Date(this.getFullYear(), 0, 1); // Jan 1st of the year
@@ -157,6 +156,7 @@ darkModeToggle.addEventListener('change', () => {
     progressElement.classList.toggle('dark-mode', isDarkMode);
     progressText.classList.toggle('dark-mode', isDarkMode);
     badgeElement.classList.toggle('dark-mode', isDarkMode);
+    document.getElementById('container').classList.toggle('dark-mode', isDarkMode);
 });
 
 // Initialize the popup
