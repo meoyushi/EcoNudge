@@ -136,6 +136,17 @@ Date.prototype.getWeek = function() {
 };
 
 
+const viewFavoritesButton = document.getElementById('view-favorites');
+
+viewFavoritesButton.addEventListener('click', () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.length === 0) {
+        alert('You have no favorites yet!');
+    } else {
+        const favoritesList = favorites.map((tip, index) => `${index + 1}. ${tip}`).join('\n');
+        alert(`Your Favorites:\n\n${favoritesList}`);
+    }
+});
 
 
 
