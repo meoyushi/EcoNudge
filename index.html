@@ -1,0 +1,61 @@
+<!-- landing page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoNudge</title>
+<link rel="stylesheet" href="landing.css">
+</head>
+<script>
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+  cards.forEach(card => {
+    const top = card.getBoundingClientRect().top;
+    if(top < window.innerHeight - 50){
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+    }
+  });
+});
+</script>
+<body>
+
+<section class="hero">
+    <img src="icon128.png" class="logo">
+    <h1>EcoNudge</h1>
+    <p>Promoting Sustainable Choices Through Awareness</p>
+
+    <div class="buttons">
+        <a href="https://github.com/meoyushi/EcoNudge" target="_blank">GitHub</a>
+        <a href="https://youtu.be/frgKc_QPFzw?si=bKMK0Bu8Ld8agO6z" target="_blank">Demo Video</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Features</h2>
+
+    <div class="grid">
+        <div class="card">🌱 Daily Eco Tips</div>
+        <div class="card">🌙 Dark Mode</div>
+        <div class="card">⭐ Save Favorites</div>
+        <div class="card">📈 Weekly Progress</div>
+        <div class="card">🏆 Achievements & Badges</div>
+        <div class="card">♻️ Gamified Sustainability</div>
+    </div>
+</section>
+
+<section class="video">
+    <h2>Watch Demo</h2>
+    <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/frgKc_QPFzw"
+    frameborder="0" allowfullscreen></iframe>
+</section>
+
+<footer>
+Built by Aayushi Thakre and Soham Palkrit • Chrome Extension Project
+</footer>
+
+</body>
+</html>
