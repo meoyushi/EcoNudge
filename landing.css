@@ -117,8 +117,8 @@ body::before{
     border-radius:18px;
     font-size:1.08rem;
     border:1px solid rgba(255,255,255,.08);
-    opacity:0;
-    transform:translateY(30px);
+    opacity:1;
+    transform:translateY(0);
     transition:.7s ease;
 }
 
